@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Redis Task_note</title>
+    <style>
+        .newspaper {
+            -webkit-column-count: 3; /* Chrome, Safari, Opera*/
+            -moz-column-count: 3;
+            column-count: 3;
+        }
+        .head {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <h1> Simple Redis Task_Note</h1>
+        <form method="POST">
+            <fieldset>
+                <legend>Create Task</legend>
+                 {{ cform.title.label }}<br>
+                {{ cform.title }}<br>
+                {{ cform.shortdesc.label }}<br>
+                {{ cform.shortdesc }}<br>
+                {{ cform.priority.label }}<br>
+                {{ cform.priority }}<br><br>
+                {{ cform.create }}
+            </fieldset>
+
+        </form>
+        <form method="post">
+            {{ dform.hidden_tag() }}
+            <fieldset>
+                <legend>Delete Task</legend>
+                {{ dform.key.label }}<br>
+                {{ dform.key }}<br>
+                <br>OR<br><br>
+                {{ dform.title.label }}<br>
+                {{ dform.title }}<br><br>
+                {{ dform.delete }}
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <br>
+    <b>Task List</b>
+    {% for i in keys %}
+        {% if i!='id' %}
+        keys= {{ i }}<br>
+        title = {{ val[i]["title"] }}<br>
+        Short Description = {{ var[i]["shortdesc"] }}<br>
+        Priority = {{ val[i]["priority"] }}<br><br>
+        {% endif %}
+    {% endfor %}
+
+</body>
+</html>
